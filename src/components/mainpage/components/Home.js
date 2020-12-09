@@ -1,48 +1,25 @@
 import { makeStyles } from "@material-ui/core";
 import React from "react";
-import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContexts";
+import { Route, Switch } from "react-router-dom";
 import LeftSideBar from "./Left/LeftSideBar";
 import RightSideBar from "./Right/RightSideBar";
 
 function Home() {
   const classes = styles();
-  const { width } = useAuth();
   return (
     <>
-      {width ? (
-        <div className={classes.root}>
-          <div className={classes.left}>
-            <LeftSideBar />
-          </div>
-          <div className={classes.right}>
-            <Switch>
-              <Route path="/home/group/:groupId">
-                <RightSideBar />
-              </Route>
-            </Switch>
-          </div>
+      <div className={classes.root}>
+        <div className={classes.left}>
+          <LeftSideBar />
         </div>
-      ) : (
-        <BrowserRouter>
+        <div className={classes.right}>
           <Switch>
-            {/* <div>
-              <button>
-                <Link to="/main">main </Link>
-              </button>
-              <button>
-                <Link to="/group">group</Link>
-              </button>
-            </div> */}
-            <Route path="/group">
-              <h1>groups</h1>
-            </Route>
-            <Route path="/home">
-              <LeftSideBar />
+            <Route path="/home/group/:groupId">
+              <RightSideBar />
             </Route>
           </Switch>
-        </BrowserRouter>
-      )}
+        </div>
+      </div>
     </>
   );
 }

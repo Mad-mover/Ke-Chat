@@ -66,6 +66,7 @@ export default function SignIn() {
       setError("");
       setLoading(true);
       await signin(email, password);
+      history.push("/home");
     } catch {
       setError("Email does not exist");
     }

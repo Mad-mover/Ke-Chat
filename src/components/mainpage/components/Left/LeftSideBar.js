@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import { MoreVert, PhotoCamera, Search } from "@material-ui/icons";
+import { ExitToApp, PhotoCamera, Search } from "@material-ui/icons";
 import React from "react";
 import { Link, Route, useLocation, useRouteMatch } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContexts";
@@ -8,9 +8,8 @@ import GroupComp from "./GroupComp";
 
 export default function LeftSideBar() {
   const classes = styles();
-  const classes2 = styles2();
   const { url, path } = useRouteMatch();
-  const { width } = useAuth();
+  const { signout } = useAuth();
 
   function NavLink({
     to,
@@ -26,8 +25,16 @@ export default function LeftSideBar() {
       className + (isActive ? ` ${activeClassName}` : ` ${inActiveClassName}`);
     return <Link to={to} className={allClassNames} {...rest} />;
   }
+
+  async function handleLogout() {
+    try {
+      signout();
+    } catch {
+      console.error("failed to signout");
+    }
+  }
   return (
-    <div className={`${width ? classes.root : classes2.root}`}>
+    <div className={`${classes.root}`}>
       <div className={classes.navBar}>
         <div className={`${classes.flexRow} ${classes.spaceBWN}`}>
           <div>Ke-Chat</div>
@@ -35,8 +42,8 @@ export default function LeftSideBar() {
             <div className={classes.icon}>
               <Search />
             </div>
-            <div className={classes.icon}>
-              <MoreVert />
+            <div onClick={handleLogout} className={classes.icon}>
+              <ExitToApp />
             </div>
           </div>
         </div>
@@ -120,7 +127,8 @@ const styles = makeStyles({
     flexDirection: "row"
   },
   icon: {
-    marginLeft: "10px"
+    marginLeft: "10px",
+    cursor: "pointer"
   },
   bottomIcons: {
     width: "100%",
@@ -156,13 +164,4 @@ const styles = makeStyles({
     height: "100%"
   },
   bg: {}
-});
-const styles2 = makeStyles({
-  root: {
-    width: "90vw",
-    height: "90%",
-    display: "flex",
-    flexDirection: "column",
-    boxShadow: "1px 1px 20px 0px black"
-  }
 });
