@@ -1,11 +1,35 @@
 import { makeStyles } from "@material-ui/core";
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContexts";
 import LeftSideBar from "./Left/LeftSideBar";
 import RightSideBar from "./Right/RightSideBar";
 
 function Home() {
   const classes = styles();
+  const { currentUser } = useAuth();
+
+  const setDisplayName = () => {
+    if (localStorage.getItem("firstName") !== null) {
+      let fName = localStorage.getItem("firstName");
+      let sName = localStorage.getItem("secondName");
+      let fullName = `${fName} ${sName}`;
+      currentUser
+        .updateProfile({
+          displayName: fullName
+        })
+        .then(function () {
+          // Update successful.
+          localStorage.clear();
+        })
+        .catch(function (error) {
+          // An error happened.
+          console.log(error);
+        });
+    }
+  };
+
+  setDisplayName();
   return (
     <>
       <div className={classes.root}>

@@ -1,7 +1,13 @@
 import { makeStyles } from "@material-ui/core";
 import { ExitToApp, PhotoCamera, Search } from "@material-ui/icons";
 import React from "react";
-import { Link, Route, useLocation, useRouteMatch } from "react-router-dom";
+import {
+  Link,
+  Route,
+  useHistory,
+  useLocation,
+  useRouteMatch
+} from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContexts";
 
 import GroupComp from "./GroupComp";
@@ -10,6 +16,7 @@ export default function LeftSideBar() {
   const classes = styles();
   const { url, path } = useRouteMatch();
   const { signout } = useAuth();
+  const history = useHistory();
 
   function NavLink({
     to,
@@ -28,7 +35,8 @@ export default function LeftSideBar() {
 
   async function handleLogout() {
     try {
-      signout();
+      await signout();
+      history.push("/signin");
     } catch {
       console.error("failed to signout");
     }
