@@ -5,7 +5,8 @@ import { useParams } from "react-router-dom";
 import { db } from "../../../../firebase";
 import { useAuth } from "../../../contexts/AuthContexts";
 import GroupMessages from "./GroupMessages";
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 export default function RightSideBar() {
   const classes = styles();

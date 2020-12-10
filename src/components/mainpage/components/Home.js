@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContexts";
 import LeftSideBar from "./Left/LeftSideBar";
