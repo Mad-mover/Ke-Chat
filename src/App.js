@@ -1,6 +1,11 @@
 import { makeStyles } from "@material-ui/core";
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch
+} from "react-router-dom";
 import { AuthProvider } from "./components/contexts/AuthContexts";
 import Home from "./components/mainpage/components/Home";
 import PrivateRoute from "./components/PrivateRoute";
@@ -15,10 +20,12 @@ export default function App() {
       <Router>
         <AuthProvider>
           <Switch>
-            <PrivateRoute exact path="/" />
+            <PrivateRoute exact path="/">
+              <Redirect to="/home" />
+            </PrivateRoute>
+            <Route path="/home" component={Home} />
             <Route path="/signup" component={SignUp} />
             <Route path="/signin" component={SignIn} />
-            <Route path="/home" component={Home} />
             <Route path="/group" component={RightSideBar} />
           </Switch>
         </AuthProvider>

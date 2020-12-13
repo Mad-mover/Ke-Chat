@@ -6,10 +6,13 @@ export default function GroupMessage(props) {
   const { name, sms, time, id } = props;
   const classes = styles();
   const { currentUser } = useAuth();
-  const user = currentUser.uid;
   return (
     <div className={`${classes.root}`}>
-      <div className={`${classes.message} ${id === user && classes.receiver}`}>
+      <div
+        className={`${classes.message} ${
+          currentUser.uid !== null && id === currentUser.uid && classes.receiver
+        }`}
+      >
         <span className={classes.name}>{name}</span>
         {sms}
         <span className={`${classes.time}`}>{time}</span>

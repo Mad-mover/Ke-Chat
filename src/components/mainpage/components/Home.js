@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContexts";
 import LeftSideBar from "./Left/LeftSideBar";
 import RightSideBar from "./Right/RightSideBar";
@@ -28,6 +28,9 @@ function Home() {
         });
     }
   };
+  if (currentUser === null) {
+    return <Redirect to="/signin" />;
+  }
 
   setDisplayName();
   return (
