@@ -1,2 +1,2 @@
 # Ke-Chat
-Created with CodeSandbox
+Created by Jack Ranold

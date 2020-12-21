@@ -30,6 +30,8 @@ export default function RightSideBar() {
         .catch((error) => console.log(error));
     }
     setText("");
+    let dummy = document.getElementById("message");
+    dummy.scrollIntoView({ behavior: "smooth" });
   }
 
   useEffect(() => {

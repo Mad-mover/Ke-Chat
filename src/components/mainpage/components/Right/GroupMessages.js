@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../../../../firebase";
 import GroupMessage from "./GroupMessage";
@@ -7,6 +7,7 @@ import GroupMessage from "./GroupMessage";
 export default function GroupMessages() {
   const { groupId } = useParams();
   const [messages, setMessages] = useState([]);
+  const dummy = useRef();
 
   useEffect(() => {
     const unsubscribe = db
@@ -17,10 +18,12 @@ export default function GroupMessages() {
       .onSnapshot((snapshot) =>
         setMessages(snapshot.docs.map((doc) => doc.data()))
       );
+    dummy.current.scrollIntoView({ behavior: "smooth" });
     return unsubscribe;
   }, [groupId]);
+
   return (
-    <>
+    <div>
       {messages.map((message) => (
         <GroupMessage
           key={message.id}
@@ -32,6 +35,7 @@ export default function GroupMessages() {
           }
         />
       ))}
-    </>
+      <div id="message" ref={dummy}></div>
+    </div>
   );
 }
