@@ -26,7 +26,6 @@ export default function GroupMessages() {
     <div>
       {messages.map((message) => (
         <GroupMessage
-          key={message.id}
           name={message.name}
           sms={message.message}
           id={message.id}
