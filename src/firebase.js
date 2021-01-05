@@ -3,14 +3,14 @@ import "firebase/auth";
 import "firebase/firestore";
 
 var firebaseConfig = {
-  apiKey: "AIzaSyCKcY_krzeVnASKQUJ1BVundScHAo8tg4Y",
-  authDomain: "all-fireb.firebaseapp.com",
-  databaseURL: "https://all-fireb.firebaseio.com",
-  projectId: "all-fireb",
-  storageBucket: "all-fireb.appspot.com",
-  messagingSenderId: "781955126191",
-  appId: "1:781955126191:web:a06b6b57774d4f7a5f555a",
-  measurementId: "G-QQHV6KXHBP"
+  apiKey: "AIzaSyCMdFeU43Lgh_jLEg0rDS5GE0cC3vETm2Q",
+  authDomain: "ke-chat-f078e.firebaseapp.com",
+  databaseURL: "https://ke-chat-f078e.firebaseio.com",
+  projectId: "ke-chat-f078e",
+  storageBucket: "ke-chat-f078e.appspot.com",
+  messagingSenderId: "416161001106",
+  appId: "1:416161001106:web:dd7d64a06b20e80435c04b",
+  measurementId: "G-T54Q2G1RV6"
 };
 
 const app = firebase.initializeApp(firebaseConfig);
